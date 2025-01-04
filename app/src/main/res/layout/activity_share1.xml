@@ -7,20 +7,19 @@
         android:layout_height="match_parent"
         tools:context=".ShareActivity1">
 
-        <EditText
-            android:id="@+id/shareEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="enter text to share"
-            tools:ignore="MissingConstraints" />
-
     <Button
         android:id="@+id/shareButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:text="Share"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="267dp" />
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="486dp" />
 
+    <EditText
+        android:id="@+id/shareEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter text here"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
