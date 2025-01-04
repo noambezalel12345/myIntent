@@ -14,12 +14,13 @@
             android:hint="enter text to share"
             tools:ignore="MissingConstraints" />
 
-        <Button
-            android:id="@+id/shareButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Share"
-            android:layout_marginTop="16dp"
-            tools:ignore="MissingConstraints" />
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="179dp"
+        tools:layout_editor_absoluteY="267dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
