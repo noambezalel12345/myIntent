@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         makeCallButton.setOnClickListener(v -> {
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:0586422008"));
+            callIntent.setData(Uri.parse("tel:1234567891"));
             startActivity(callIntent);
         });
 
