@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
         name = findViewById(R.id.nameTV);
         mail = findViewById(R.id.mailTV);
 
+
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.client_id))
                 .requestEmail()
