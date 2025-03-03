@@ -3,6 +3,7 @@ package com.example.myintentapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,11 +23,14 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.Firebase;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,48 +68,44 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         }
-                    })
+                    });
                 } catch (ApiException e) {
                     e.printStackTrace();
                 }
             }
 
         }
-    }
-    @Override
-        public void onA)
+    });
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        FirebaseApp.initializeApp(this);
+        imageView = findViewById(R.id.profileImage);
+        name = findViewById(R.id.nameTV);
+        mail = findViewById(R.id.mailTV);
 
-        Button openBrowserButton = findViewById(R.id.openBrowserButton);
-        Button makeCallButton = findViewById(R.id.makeCallButton);
-        Button shareTextButton = findViewById(R.id.shareTextButton);
+        GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.client_id))
+                .requestEmail()
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(MainActivity.this, options);
 
-        openBrowserButton.setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.noam.com"));
-            startActivity(browserIntent);
+        auth = FirebaseAuth.getInstance();
+
+
+        SignInButton signInButton = findViewById(R.id.signIn);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = googleSignInClient.getSignInIntent();
+                activityResultLauncher.launch(intent);
+            }
         });
 
-        makeCallButton.setOnClickListener(v -> {
-            Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:1234567891"));
-            startActivity(callIntent);
-        });
-
-        shareTextButton.setOnClickListener(v -> {
-            Intent Intent = new Intent(MainActivity.this, ShareActivity1.class);
-            startActivity(Intent);
-        });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
     }
 }
